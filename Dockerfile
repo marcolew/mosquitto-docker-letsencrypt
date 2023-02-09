@@ -15,6 +15,13 @@ RUN set -x && \
         build-base \
         cmake \
         cjson-dev \
+	bash \
+	coreutils \
+	nano \
+        py-crypto \
+	util-linux \
+	ca-certificates \
+        certbot \
         gnupg \
         libressl-dev \
         linux-headers \
