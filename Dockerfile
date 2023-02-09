@@ -103,9 +103,6 @@ ENV TERM=xterm-color
 ENV SHELL=/bin/bash
 
 RUN \
-	mkdir /mosquitto && \
-	mkdir /mosquitto/log && \
-	mkdir /mosquitto/conf && \
 	apk update && \
 	apk upgrade && \
 	apk add \
