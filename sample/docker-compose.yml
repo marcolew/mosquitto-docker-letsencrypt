@@ -1,12 +1,12 @@
 version: '2'
 services:
   mqtt:
-    image: harbor.swms-cloud.com/iot/mosquittodockerletsencrypt:latest
+    image: harbor.swms-cloud.com/iot/mosquittodocker:latest
 #    networks:
 #      - mosquitto-net
     ports:
       - 1883:1883
-      - 8083:8083
+#      - 8083:8083
       - 8885:8883
       - 8116:80
     environment:
