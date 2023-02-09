@@ -43,6 +43,7 @@ else
                                         --standalone \
                                         --agree-tos \
                                         --preferred-challenges http-01 \
+                                        --cert-name mqtt \
                                         -n \
                                         -d $DOMAIN \
                                         -m $EMAIL
@@ -52,6 +53,7 @@ else
                                         --standalone \
                                         --agree-tos \
                                         --preferred-challenges http-01 \
+                                        --cert-name mqtt\
                                         -n \
                                         -d $DOMAIN \
                                         -m $EMAIL
