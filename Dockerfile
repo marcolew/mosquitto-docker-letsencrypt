@@ -16,7 +16,7 @@ RUN \
 		coreutils \
 		nano \
         	py-crypto \
-		whereis \
+		util-linux \
 		ca-certificates \
         	certbot \
 		mosquitto \
