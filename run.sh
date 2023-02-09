@@ -31,10 +31,21 @@ if [ ! -d "/mosquitto/log" ]; then
 fi
 
 # create blank passwd if it doesn't exist
-if [ -d "/mosquitto/conf" ]; then
-	if [ ! -f "/mosquitto/conf/passwd" ]; then
-		echo "Creating blank passwd file at /mosquitto/conf/passwd"
-		touch /mosquitto/conf/passwd
+if [ -d "/mosquitto/config" ]; then
+	if [ ! -f "/mosquitto/config/dynamic-security.json" ]; then
+		echo "Creating blank intial passwd"
+		# Set Default Admin Credentials for Dynamic Security Plugin Configuration
+		DEFAULT_DYNSEC_ADMIN=admin
+		DEFAULT_DYNSEC_PASSWORD=securePassword
+
+		# Set values if provided via Environment Variables in the Docker Init Container
+		MQTT_DYNSEC_ADMIN_USER=${MQTT_DYNSEC_ADMIN_USER:-DEFAULT_DYNSEC_ADMIN}
+		MQTT_DYNSEC_ADMIN_PASSWORD=${MQTT_DYNSEC_ADMIN_PASSWORD:-DEFAULT_DYNSEC_PASSWORD}
+
+		# echo "Admin/Pass: ${MQTT_DYNSEC_ADMIN_USER}/${MQTT_DYNSEC_ADMIN_PASSWORD}" ## DEBUG
+
+		# Set the Admin Credentials for RBAC control via Dyamic Security Plugin
+		mosquitto_ctrl dynsec init /mosquitto/config/dynamic-security.json ${MQTT_DYNSEC_ADMIN_USER} ${MQTT_DYNSEC_ADMIN_PASSWORD}
 	fi
 else
 	echo "WARNING: /mosquitto/conf should be mapped to persistent docker volume"
@@ -54,7 +65,7 @@ if [ -d "/scripts" ]; then
 fi
 
 echo "Starting mosquitto process (daemon)..."
-if [ -f "/mosquitto/conf/mosquitto.conf" ]; then
+if [ -f "/mosquitto/config/mosquitto.conf" ]; then
 	# Note that this method of starting mosquitto results in the process
 	# not receiving the SIGTERM signal from Docker on shutdown.  This is
 	# nessary because mosquitto must be restarted automatically when
@@ -63,12 +74,12 @@ if [ -f "/mosquitto/conf/mosquitto.conf" ]; then
 	#
 	# A possible enhancement would be to include an "is alive" check
 	# for mosquitto to restart it if required or exit the container.
-	/usr/sbin/mosquitto -c /mosquitto/conf/mosquitto.conf&
+	/usr/sbin/mosquitto -c /mosquitto/config/mosquitto.conf&
 	echo "Going to sleep..."
 	# sleep infinity not available, so 9999d should be an acceptable substitute :-)
 	sleep 9999d
 else
-	echo "ERROR: missing /mosquitto/conf/mosquitto.conf"
+	echo "ERROR: missing /mosquitto/config/mosquitto.conf"
 	echo "ERROR: check your Docker volume mappings"
 	echo "Exiting..."
 fi
