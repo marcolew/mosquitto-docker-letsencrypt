@@ -13,13 +13,14 @@ services:
       - DOMAIN=mqtt.monitoring.profec-ventus.com
       - EMAIL=lewandowski@swms.de
     volumes:
-      - mosquitto_conf/:/mosquitto/conf
+      - mosquitto_conf:/mosquitto/conf
       - mosquitto_log:/mosquitto/log
       - letsencrypt:/etc/letsencrypt
       - scripts:/scripts
     container_name: mqtt
     restart: always
 volumes:
+  mosquitto_conf:
   mosquitto_log:
   letsencrypt:
   scripts:
