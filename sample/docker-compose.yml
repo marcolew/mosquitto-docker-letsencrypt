@@ -26,6 +26,10 @@ services:
     image: cedalo/management-center:2.3.4
     container_name: mgmt-center
     hostname: mgmt-center
+    depends_on:
+      - mosquitto
+    volumes:
+      - ./config:/management-center/backend/config
     ports:
       - "8088:8088"
     env_file:
