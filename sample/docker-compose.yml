@@ -2,8 +2,6 @@ version: '2'
 services:
   mqtt:
     image: harbor.swms-cloud.com/iot/mosquittodocker:latest
-    networks:
-      - backend-network
     ports:
       - 1883:1883
       - 8083:8083
@@ -20,29 +18,8 @@ services:
     hostname: mqtt
     restart: always
 
-
-  # Cedalo MQTT Management Center Web based UI for RBAC management
-  mqtt-mgmt:
-    image: cedalo/management-center:2.3.4
-    container_name: mgmt-center
-    hostname: mgmt-center
-    depends_on:
-      - mqtt
-    volumes:
-      - ./config:/management-center/backend/config
-    ports:
-      - "8088:8088"
-    env_file:
-      - cedalo.env
-    networks:
-      - backend-network
-
 volumes:
   mosquitto_conf:
   mosquitto_log:
   letsencrypt:
   scripts:
-
-networks:
-  backend-network:
-    external: true
