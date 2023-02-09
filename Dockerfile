@@ -115,8 +115,8 @@ RUN \
 		ca-certificates \
         	certbot \
 	rm -f /var/cache/apk/* && \
-	pip3 install --upgrade pip3 && \
-	pip3 install pyRFC3339 configobj ConfigArgParse
+	pip install --upgrade pip && \
+	pip install pyRFC3339 configobj ConfigArgParse
 
 COPY run.sh /run.sh
 COPY certbot.sh /certbot.sh
