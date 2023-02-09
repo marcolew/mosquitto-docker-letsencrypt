@@ -46,6 +46,8 @@ if [ -d "/mosquitto/config" ]; then
 
 		# Set the Admin Credentials for RBAC control via Dyamic Security Plugin
 		mosquitto_ctrl dynsec init /mosquitto/config/dynamic-security.json ${MQTT_DYNSEC_ADMIN_USER} ${MQTT_DYNSEC_ADMIN_PASSWORD}
+		chown mosquitto:mosquitto /mosquitto/config/dynamic-security.json
+		chmod 755 /mosquitto/config/dynamic-security.json
 	fi
 else
 	echo "WARNING: /mosquitto/conf should be mapped to persistent docker volume"
