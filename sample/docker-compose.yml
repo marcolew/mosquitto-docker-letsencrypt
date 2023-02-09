@@ -1,7 +1,7 @@
 version: '2'
 services:
   mqtt:
-    image: iot/mosquittodockerletsencrypt
+    image: harbor.swms-cloud.com/iot/mosquittodockerletsencrypt:latest
 #    networks:
 #      - mosquitto-net
     ports:
