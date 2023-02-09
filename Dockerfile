@@ -106,7 +106,7 @@ RUN \
 	apk update && \
 	apk upgrade && \
 	apk add \
-		python \
+		python3 py3-pip \
 		bash \
 		coreutils \
 		nano \
@@ -115,8 +115,8 @@ RUN \
 		ca-certificates \
         	certbot \
 	rm -f /var/cache/apk/* && \
-	pip install --upgrade pip && \
-	pip install pyRFC3339 configobj ConfigArgParse
+	pip3 install --upgrade pip3 && \
+	pip3 install pyRFC3339 configobj ConfigArgParse
 
 COPY run.sh /run.sh
 COPY certbot.sh /certbot.sh
