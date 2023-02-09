@@ -65,3 +65,9 @@ else
                 echo 'ERROR: $DOMAIN must be defined'
         fi
 fi
+chmod 755 /etc/letsencrypt/archive
+chmod 755 /etc/letsencrypt/live
+chmod 755 /etc/letsencrypt/live/mqtt
+chmod 755 /etc/letsencrypt/live/mqtt/fullchain.pem
+chmod 755 /etc/letsencrypt/live/mqtt/chain.pem
+chmod 755 /etc/letsencrypt/live/mqtt/privkey.pem
