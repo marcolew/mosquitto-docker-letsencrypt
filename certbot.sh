@@ -20,7 +20,7 @@
 # to let this script obtain and manage the real certificates
 #
 
-FOLDER="/etc/letsencrypt/live/$DOMAIN"
+FOLDER="/etc/letsencrypt/live"
 echo "Dealing with certificates..."
 echo "Location: $FOLDER"
 if [ -d "$FOLDER" ]; then
