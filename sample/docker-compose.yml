@@ -17,6 +17,7 @@ services:
       - letsencrypt:/etc/letsencrypt
       - scripts:/scripts
     container_name: mqtt
+    hostname: mqtt
     restart: always
 
 
@@ -24,6 +25,7 @@ services:
   mqtt-mgmt:
     image: cedalo/management-center:2.3.4
     container_name: mgmt-center
+    hostname: mgmt-center
     ports:
       - "8088:8088"
     env_file:
