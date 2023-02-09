@@ -15,13 +15,6 @@ RUN set -x && \
         build-base \
         cmake \
         cjson-dev \
-	bash \
-	coreutils \
-	nano \
-        py-crypto \
-	util-linux \
-	ca-certificates \
-        certbot \
         gnupg \
         libressl-dev \
         linux-headers \
@@ -105,6 +98,28 @@ RUN set -x && \
     rm -rf /build
 
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
+
+ENV TERM=xterm-color
+ENV SHELL=/bin/bash
+
+RUN \
+	mkdir /mosquitto && \
+	mkdir /mosquitto/log && \
+	mkdir /mosquitto/conf && \
+	apk update && \
+	apk upgrade && \
+	apk add \
+		python \
+		bash \
+		coreutils \
+		nano \
+        	py-crypto \
+		util-linux \
+		ca-certificates \
+        	certbot \
+	rm -f /var/cache/apk/* && \
+	pip install --upgrade pip && \
+	pip install pyRFC3339 configobj ConfigArgParse
 
 COPY run.sh /run.sh
 COPY certbot.sh /certbot.sh
