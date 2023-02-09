@@ -119,7 +119,7 @@ COPY run.sh /run.sh
 COPY certbot.sh /certbot.sh
 COPY restart.sh /restart.sh
 COPY croncert.sh /etc/periodic/weekly/croncert.sh
-COPY mosquitto.conf /mosquitto/conf/mosquitto.conf
+COPY mosquitto.conf /mosquitto/config/mosquitto.conf
 RUN \
 	chmod +x /run.sh && \
 	chmod +x /certbot.sh && \
