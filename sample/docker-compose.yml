@@ -9,9 +9,8 @@ services:
       - 8083:8083
       - 8885:8883
       - 8116:80
-    environment:
-      - DOMAIN=mqtt.monitoring.profec-ventus.com
-      - EMAIL=lewandowski@swms.de
+    env_file:
+      - mosquitto.env
     volumes:
       - mosquitto_conf:/mosquitto/config
       - mosquitto_log:/mosquitto/log
