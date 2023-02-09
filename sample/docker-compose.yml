@@ -27,7 +27,7 @@ services:
     container_name: mgmt-center
     hostname: mgmt-center
     depends_on:
-      - mosquitto
+      - mqtt
     volumes:
       - ./config:/management-center/backend/config
     ports:
