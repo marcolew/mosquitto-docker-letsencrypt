@@ -7,7 +7,7 @@ services:
     ports:
       - 1883:1883
       - 8083:8083
-      - 8883:8883
+      - 8885:8883
       - 8116:80
     environment:
       - DOMAIN=mqtt.monitoring.profec-ventus.com
@@ -23,7 +23,7 @@ volumes:
   mosquitto_log:
   letsencrypt:
   scripts:
-  
+
 #networks:
 #  backend-net:
 #    external:
